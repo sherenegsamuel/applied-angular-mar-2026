@@ -1,0 +1,2 @@
+- [ ] - Students: During lunch - In the VM, log into your Github account.
+    - [ ] config
