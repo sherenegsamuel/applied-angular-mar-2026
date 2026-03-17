@@ -3,6 +3,7 @@ import { SectionLayout, SectionLink } from '@ht/shared/ui-common/layouts/section
 
 @Component({
   selector: 'ht-signalsdemos-home',
+  providers: [],
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [SectionLayout],
   template: `<app-ui-section-layout title="Signals" [links]="links()" />`,

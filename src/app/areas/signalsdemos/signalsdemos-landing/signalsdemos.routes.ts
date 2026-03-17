@@ -3,12 +3,18 @@ import { Home } from './internal/home';
 import { HomePage } from './internal/pages/home';
 import { CounterPage } from './internal/pages/counter';
 import { PrefsPage } from './internal/pages/prefs';
+import { counterStore } from './internal/counter-store';
 
 export const signalsdemosFeatureRoutes: Routes = [
   {
     path: '',
-    providers: [],
+    providers: [counterStore],
+
+    // scoped (available) to anything in this feature,
+    // but not outside of this.
+    // it does not remove (destroy ) when you leave.
     component: Home,
+
     children: [
       {
         path: '',

@@ -2,9 +2,13 @@ import { Component, computed, effect, inject, signal } from '@angular/core';
 import { PageLayout } from '@ht/shared/ui-common/layouts/page';
 import { Title } from '@angular/platform-browser';
 import { FizzBuzz } from '../fizz-buzz';
+import { counterStore } from '../counter-store';
 
 @Component({
   selector: 'app-home-pages-counter',
+  // this service should be created fresh every time you create this
+  // component, and should be destroyed when you destroy this component
+  providers: [],
   imports: [PageLayout, FizzBuzz],
   template: `<app-ui-page title="Counter">
     <div>
@@ -39,6 +43,8 @@ export class CounterPage {
   // You may use inputs (later), but those should be signals
   // observables (rxjs) are allowed, but we are hopefully migrating away from that.
   // current = signal(42);
+
+  store = inject(counterStore);
   current = signal(0);
 
   title = inject(Title);
@@ -58,10 +64,10 @@ export class CounterPage {
   emoji = computed(() => '💾'.repeat(this.current()));
 
   increment() {
-    this.current.update((c) => c + 1);
+    this.current.update((c) => c + this.store.by());
   }
 
   decrement() {
-    this.current.update((c) => c - 1);
+    this.current.update((c) => c - this.store.by());
   }
 }
