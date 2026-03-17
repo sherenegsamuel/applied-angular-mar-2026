@@ -1,10 +1,11 @@
 import { Component, computed, effect, inject, signal } from '@angular/core';
 import { PageLayout } from '@ht/shared/ui-common/layouts/page';
 import { Title } from '@angular/platform-browser';
+import { FizzBuzz } from '../fizz-buzz';
 
 @Component({
   selector: 'app-home-pages-counter',
-  imports: [PageLayout],
+  imports: [PageLayout, FizzBuzz],
   template: `<app-ui-page title="Counter">
     <div>
       <button
@@ -28,6 +29,7 @@ import { Title } from '@angular/platform-browser';
         Reset
       </button>
     </div>
+    <app-demos-fizz-buzz [val]="current()" />
   </app-ui-page>`,
   styles: ``,
 })
