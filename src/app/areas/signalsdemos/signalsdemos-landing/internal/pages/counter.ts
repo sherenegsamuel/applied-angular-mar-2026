@@ -13,27 +13,27 @@ import { counterStore } from '../counter-store';
   template: `<app-ui-page title="Counter">
     <div>
       <button
-        [disabled]="shouldBeDisabled()"
-        (click)="decrement()"
+        [disabled]="store.decrementShouldBeDisabled()"
+        (click)="store.decrement()"
         class="btn btn-circle btn-warning"
       >
         -
       </button>
-      <span class="text-3xl p-4">{{ current() }}</span
+      <span class="text-3xl p-4">{{ store.current() }}</span
       ><span>{{ emoji() }}</span>
 
-      <button (click)="increment()" class="btn btn-circle btn-success">+</button>
+      <button (click)="store.increment()" class="btn btn-circle btn-success">+</button>
     </div>
     <div class="p-8">
       <button
-        [disabled]="shouldBeDisabled()"
-        (click)="current.set(0)"
+        [disabled]="store.resetShouldBeDisabled()"
+        (click)="store.reset()"
         class="btn btn-md btn-primary"
       >
         Reset
       </button>
     </div>
-    <app-demos-fizz-buzz [val]="current()" />
+    <app-demos-fizz-buzz [val]="store.current()" />
   </app-ui-page>`,
   styles: ``,
 })
@@ -45,7 +45,7 @@ export class CounterPage {
   // current = signal(42);
 
   store = inject(counterStore);
-  current = signal(0);
+  // current = signal(0);
 
   title = inject(Title);
 
@@ -56,18 +56,5 @@ export class CounterPage {
     });
   }
 
-  shouldBeDisabled = computed(() => {
-    const current = this.current(); // this is saying watch this signal, if it changes, reeevaluate everything in this computed
-    return current === 0;
-  });
-
-  emoji = computed(() => '💾'.repeat(this.current()));
-
-  increment() {
-    this.current.update((c) => c + this.store.by());
-  }
-
-  decrement() {
-    this.current.update((c) => c - this.store.by());
-  }
+  emoji = computed(() => '💾'.repeat(this.store.current()));
 }
