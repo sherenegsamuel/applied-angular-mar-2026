@@ -41,14 +41,16 @@ function addRouteToAppRoutes(name: string, path: string): Rule {
       `  },`,
     ].join('\n');
 
-    // Anchor: insert before the closing of realRoutes (before `\n];\n\nconst devRoutes`)
-    const anchor = '\n];\n\nconst devRoutes';
-    const anchorIndex = content.indexOf(anchor);
-    if (anchorIndex === -1) {
+    // Anchor: insert before the closing of realRoutes (before `];\n\nconst devRoutes`)
+    // Use regex to handle both LF and CRLF line endings (Windows compatibility)
+    const anchorRegex = /\r?\n\];\r?\n\r?\nconst devRoutes/;
+    const anchorMatch = anchorRegex.exec(content);
+    if (!anchorMatch || anchorMatch.index === undefined) {
       throw new SchematicsException(
         `Could not find insertion point in ${routesPath}. Expected "const devRoutes" after realRoutes array.`,
       );
     }
+    const anchorIndex = anchorMatch.index;
 
     const recorder = tree.beginUpdate(routesPath);
     recorder.insertLeft(anchorIndex, `\n${newRoute}`);
