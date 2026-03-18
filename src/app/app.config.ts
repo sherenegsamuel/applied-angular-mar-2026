@@ -11,7 +11,7 @@ import { appUiStore } from '@ht/shared/util-prefs/ui.store';
 import { authStore } from '@ht/shared/util-auth/store';
 import { provideIcons } from '@ng-icons/core';
 import { routes } from './app.routes';
-import { counterStore } from '@ht/signalsdemos/signalsdemos-landing/internal/counter-store';
+
 export const appConfig: ApplicationConfig = {
   providers: [
     provideBrowserGlobalErrorListeners(),

@@ -3,7 +3,7 @@ import { Home } from './internal/home';
 import { HomePage } from './internal/pages/home';
 import { CounterPage } from './internal/pages/counter';
 import { PrefsPage } from './internal/pages/prefs';
-import { counterStore } from './internal/counter-store';
+import { counterStore } from './internal/stores/counter-store';
 
 export const signalsdemosFeatureRoutes: Routes = [
   {

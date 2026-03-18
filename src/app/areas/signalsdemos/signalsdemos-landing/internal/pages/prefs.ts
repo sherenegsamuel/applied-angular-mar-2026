@@ -1,6 +1,6 @@
-import { Component, inject, signal } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { PageLayout } from '@ht/shared/ui-common/layouts/page';
-import { counterStore } from '../counter-store';
+import { counterStore } from '../stores/counter-store';
 
 @Component({
   selector: 'app-demos-pages-counter-prefs',

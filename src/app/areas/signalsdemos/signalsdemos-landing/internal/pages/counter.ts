@@ -1,7 +1,7 @@
-import { Component, computed, effect, inject } from '@angular/core';
+import { Component, computed, effect, inject, signal } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { PageLayout } from '@ht/shared/ui-common/layouts/page';
-import { counterStore } from '../counter-store';
+import { counterStore } from '../stores/counter-store';
 import { FizzBuzz } from '../fizz-buzz';
 
 @Component({
@@ -12,6 +12,9 @@ import { FizzBuzz } from '../fizz-buzz';
   imports: [PageLayout, FizzBuzz],
   template: `<app-ui-page title="Counter">
     <div>
+      <button [class.btn-primary]="on()" [class.btn-warning]="!on()" class="btn" (click)="toggle()">
+        Toggle
+      </button>
       <button
         [disabled]="store.decrementShouldBeDisabled()"
         (click)="store.decrement()"
@@ -45,6 +48,12 @@ export class CounterPage {
   // You may use inputs (later), but those should be signals
   // observables (rxjs) are allowed, but we are hopefully migrating away from that.
   // current = signal(42);
+
+  on = signal(false);
+
+  toggle() {
+    this.on.update((o) => !o);
+  }
 
   store = inject(counterStore);
   // current = signal(0);
