@@ -25,7 +25,7 @@ export const authStore = signalStore(
     };
   }),
   withHooks({
-    onInit(store) {
+    onInit() {
       //setInterval(() => store.authResource.reload(), 5000)
     },
   }),
