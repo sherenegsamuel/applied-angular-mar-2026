@@ -20,6 +20,8 @@ Add an way to sort the books by:
 
 Both ascending and descending.
 
+If you want a big challenge, add pagination.
+
 **Below This Line** might be helpful, it might not. You do you.
 
 The mock API has an endpoint at `/api/books`. It supports a `GET` request.
