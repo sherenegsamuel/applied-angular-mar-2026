@@ -2,7 +2,6 @@ import { Pipe, PipeTransform } from '@angular/core';
 
 @Pipe({
   name: 'extractHost',
-  standalone: true,
 })
 export class ExtractHostPipe implements PipeTransform {
   transform(url: string, titleCase = false): string {
