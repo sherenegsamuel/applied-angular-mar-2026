@@ -5,12 +5,12 @@ import { Pipe, PipeTransform } from '@angular/core';
   standalone: true,
 })
 export class ExtractHostPipe implements PipeTransform {
-  transform(url: string): string {
+  transform(url: string, titleCase = false): string {
     try {
       const urlObj = new URL(url);
       const hostname = urlObj.hostname || '';
-      // Remove 'www.' prefix if present and get the domain name
-      return hostname.replace(/^www\./, '').split('.')[0];
+      const name = hostname.replace(/^www\./, '').split('.')[0];
+      return titleCase ? name.charAt(0).toUpperCase() + name.slice(1) : name;
     } catch {
       return url;
     }
