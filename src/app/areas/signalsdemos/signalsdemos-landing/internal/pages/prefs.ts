@@ -8,15 +8,11 @@ import { counterStore } from '../stores/counter-store';
   imports: [PageLayout],
   template: `<app-ui-page title="counter-prefs">
     <div class="join">
-      <button (click)="store.setBy(1)" [disabled]="store.by() === 1" class="btn join-item">
-        1
-      </button>
-      <button (click)="store.setBy(3)" [disabled]="store.by() === 3" class="btn join-item">
-        3
-      </button>
-      <button (click)="store.setBy(5)" [disabled]="store.by() === 5" class="btn join-item">
-        5
-      </button>
+      @for (by of store.availableCountByValues; track by) {
+        <button (click)="store.setBy(by)" [disabled]="store.by() === by" class="btn join-item">
+          {{ by }}
+        </button>
+      }
     </div>
   </app-ui-page>`,
   styles: ``,

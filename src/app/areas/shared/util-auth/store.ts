@@ -1,4 +1,4 @@
-import { signalStore, withComputed, withMethods, withProps } from '@ngrx/signals';
+import { signalStore, withComputed, withHooks, withMethods, withProps } from '@ngrx/signals';
 import { computed } from '@angular/core';
 import { httpResource } from '@angular/common/http';
 import { AuthUser } from './internal/types';
@@ -23,5 +23,10 @@ export const authStore = signalStore(
     return {
       isLoggedIn: computed(() => !!store.authResource.value()),
     };
+  }),
+  withHooks({
+    onInit(store) {
+      //setInterval(() => store.authResource.reload(), 5000)
+    },
   }),
 );

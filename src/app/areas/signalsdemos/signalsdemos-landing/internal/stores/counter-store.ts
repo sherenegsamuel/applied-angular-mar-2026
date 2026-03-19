@@ -5,15 +5,21 @@ import {
   withComputed,
   withHooks,
   withMethods,
+  withProps,
   withState,
 } from '@ngrx/signals';
-type ByVals = 1 | 3 | 5;
+
+const byVals = [1, 3, 5, 9] as const;
+type ByVals = (typeof byVals)[number];
 // a service that can hold the 'by' value and live longer than the component, so that I can share that data
 type CounterState = {
   by: ByVals;
   current: number;
 };
 export const counterStore = signalStore(
+  withProps(() => ({
+    availableCountByValues: byVals,
+  })),
   withState<CounterState>({
     by: 1,
     current: 0,

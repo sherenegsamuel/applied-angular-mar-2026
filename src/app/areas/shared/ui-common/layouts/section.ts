@@ -71,7 +71,10 @@ export type SectionLink = Pick<Route, 'path' | 'title'>;
       </label>
     </nav>
     <!-- Page content here -->
-    <div class="h-full"><router-outlet /></div>
+    <div class="h-full">
+      <ng-content />
+      <router-outlet />
+    </div>
   `,
   imports: [RouterOutlet, Icon, RouterLink, RouterLinkActive],
 })

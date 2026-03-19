@@ -7,11 +7,12 @@ const user = {
   family_name: 'Student',
   preferred_username: 'Tracy',
   email: 'tracey@compuserve.com',
-  role: ['Student', 'Employee'],
+  role: ['Student', 'Employee', 'Manager'],
 };
 export default [
   http.get('/api/user/', async () => {
     await delay();
+    return HttpResponse.json(null);
     return HttpResponse.json(user);
   }),
 ] as HttpHandler[];
